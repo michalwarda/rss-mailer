@@ -6,10 +6,12 @@ export class RssClient {
   static FeedNotFoundError = class extends RssClient.FeedFailedToReturnError {};
   static InvalidFeedError = class extends Error {};
 
-  constructor(private readonly httpClient: () => Promise<Response>) {}
+  constructor(
+    private readonly httpClient: (url: string) => Promise<Response>
+  ) {}
 
-  getFeed(feed: string) {
-    return this.httpClient()
+  getFeed(rssFeedUrl: string) {
+    return this.httpClient(rssFeedUrl)
       .then((res) => {
         if (res.status === 404) throw new RssClient.FeedNotFoundError();
         if (res.status !== 200) throw new RssClient.FeedFailedToReturnError();

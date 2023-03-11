@@ -18,7 +18,7 @@ describe(RssClient.name, function () {
       const client = new RssClient(
         async () => new Response("", { status: 500 })
       );
-      expect(() => client.getFeed("https://unknown.feed")).toThrow(
+      expect(() => client.getFeed("https://correct.url")).toThrow(
         RssClient.FeedFailedToReturnError as any as Error
       );
     });
@@ -27,7 +27,7 @@ describe(RssClient.name, function () {
       const client = new RssClient(
         async () => new Response("invalid feed", { status: 200 })
       );
-      expect(() => client.getFeed("https://invalid.feed")).toThrow(
+      expect(() => client.getFeed("https://correct.url")).toThrow(
         RssClient.InvalidFeedError as any as Error
       );
     });
@@ -39,7 +39,7 @@ describe(RssClient.name, function () {
       const client = new RssClient(
         async () => new Response(xmlFile, { status: 200 })
       );
-      expect(await client.getFeed("https://invalid.feed")).toEqual({
+      expect(await client.getFeed("https://correct.url")).toEqual({
         rss: {
           channel: {
             item: [
@@ -59,6 +59,19 @@ describe(RssClient.name, function () {
           },
         },
       });
+    });
+
+    test("calls correct url", async function () {
+      let xmlFile = await promisify(fs.readFile)(
+        `${import.meta.dir}/statics/RssFeed.xml`
+      );
+
+      const client = new RssClient(async (url) => {
+        expect(url).toBe("https://correct.url");
+        return new Response(xmlFile, { status: 200 });
+      });
+
+      await client.getFeed("https://correct.url");
     });
   });
 });
