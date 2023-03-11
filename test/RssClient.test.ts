@@ -1,7 +1,7 @@
 import { describe, expect, test } from "bun:test";
 import * as fs from "fs";
 import { promisify } from "util";
-import { RssClient } from "../RssClient.js";
+import { RssClient } from "../lib/RssClient.js";
 
 describe(RssClient.name, function () {
   describe(RssClient.prototype.getFeed.name, function () {
