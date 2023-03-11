@@ -1,19 +1,17 @@
 <rss version="2.0">
     <channel>
         <item>
-            <title>Bun vs Node Benchmark - no one cares about speed as much as your CI does</title>
+            <title>Title 2</title>
             <link>https://grifel.dev/bun-dev-experience/</link>
             <guid>https://grifel.dev/bun-dev-experience/</guid>
-            <description>Bun is fast. But honestly I almost don't care that much about the fact that it can handle more requests. What matters for me is how much it affects my dev experience. And I'll give you a TLDR; It's amazing! See how Bun performs in a non-typical benchmark.
-            </description>
+            <description>Description 2</description>
             <pubDate>Sun, 05 Mar 2023 00:00:00 GMT</pubDate>
         </item>
         <item>
-            <title>Bun vs Node Benchmark - no one cares about speed as much as your CI does</title>
+            <title>Title 1</title>
             <link>https://grifel.dev/bun-dev-experience/</link>
             <guid>https://grifel.dev/bun-dev-experience/</guid>
-            <description>Bun is fast. But honestly I almost don't care that much about the fact that it can handle more requests. What matters for me is how much it affects my dev experience. And I'll give you a TLDR; It's amazing! See how Bun performs in a non-typical benchmark.
-            </description>
+            <description>Description 1</description>
             <pubDate>Sun, 05 Mar 2023 00:00:00 GMT</pubDate>
         </item>
     </channel>

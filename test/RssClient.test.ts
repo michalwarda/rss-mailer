@@ -20,7 +20,6 @@ class RssClient {
       .then((text) => {
         const parser = new XMLParser();
         const json = parser.parse(text);
-        console.log(json);
         const schema = z.object({
           rss: z.object({
             channel: z.object({
@@ -83,20 +82,16 @@ describe(RssClient.name, function () {
           channel: {
             item: [
               {
-                description:
-                  "Bun is fast. But honestly I almost don't care that much about the fact that it can handle more requests. What matters for me is how much it affects my dev experience. And I'll give you a TLDR; It's amazing! See how Bun performs in a non-typical benchmark.",
+                description: "Description 2",
                 link: "https://grifel.dev/bun-dev-experience/",
                 pubDate: "Sun, 05 Mar 2023 00:00:00 GMT",
-                title:
-                  "Bun vs Node Benchmark - no one cares about speed as much as your CI does",
+                title: "Title 2",
               },
               {
-                description:
-                  "Bun is fast. But honestly I almost don't care that much about the fact that it can handle more requests. What matters for me is how much it affects my dev experience. And I'll give you a TLDR; It's amazing! See how Bun performs in a non-typical benchmark.",
+                description: "Description 1",
                 link: "https://grifel.dev/bun-dev-experience/",
                 pubDate: "Sun, 05 Mar 2023 00:00:00 GMT",
-                title:
-                  "Bun vs Node Benchmark - no one cares about speed as much as your CI does",
+                title: "Title 1",
               },
             ],
           },
