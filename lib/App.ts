@@ -5,6 +5,7 @@ import { ISheetDb } from "./SheetDb.js";
 export function buildApp(sheetDb: ISheetDb) {
   return new Elysia()
     .state("mailingList", new MailingList(sheetDb))
+    .get("/health", () => "OK")
     .post(
       "/subscriptions",
       async ({ store: { mailingList }, body }) => {
