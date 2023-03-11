@@ -1,0 +1,8 @@
+{
+  "name": "rss-mailer",
+  "module": "index.ts",
+  "type": "module",
+  "devDependencies": {
+    "bun-types": "^0.5.0"
+  }
+}
