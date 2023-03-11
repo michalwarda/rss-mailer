@@ -1,6 +1,10 @@
 import googleapi from "googleapis";
 
-export class SheetDb {
+export interface ISheetDb {
+  append(values: any[]): Promise<void>;
+}
+
+export class SheetDb implements ISheetDb {
   constructor(
     private readonly googleSheets: (typeof googleapi)["sheets_v4"]["Resource$Spreadsheets$Values"]["prototype"]
   ) {}
@@ -12,7 +16,7 @@ export class SheetDb {
         range: process.env.SHEET_RANGE,
         valueInputOption: "USER_ENTERED",
         requestBody: {
-          values: [values],
+          values: [[...values, new Date()]],
         },
       },
       {}
