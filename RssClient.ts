@@ -23,13 +23,16 @@ export class RssClient {
         const schema = z.object({
           rss: z.object({
             channel: z.object({
-              item: z.array(
-                z.object({
-                  title: z.string(),
-                  link: z.string(),
-                  description: z.string(),
-                  pubDate: z.string(),
-                })
+              item: z.preprocess(
+                (item) => (Array.isArray(item) ? item : [item]),
+                z.array(
+                  z.object({
+                    title: z.string(),
+                    link: z.string(),
+                    description: z.string(),
+                    pubDate: z.string(),
+                  })
+                )
               ),
             }),
           }),
