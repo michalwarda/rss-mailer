@@ -11,6 +11,7 @@
   },
   "dependencies": {
     "@elysiajs/cors": "^0.1.0",
+    "@elysiajs/cron": "^0.1.0",
     "@elysiajs/swagger": "^0.2.0",
     "elysia": "^0.2.9",
     "fast-xml-parser": "^4.1.3",

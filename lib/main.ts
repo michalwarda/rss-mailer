@@ -3,6 +3,8 @@ import { buildApp } from "./App.js";
 import { SheetDb } from "./SheetDb.js";
 import { swagger } from "@elysiajs/swagger";
 import { cors } from "@elysiajs/cors";
+import "@elysiajs/cron";
+import { RssClient } from "./RssClient.js";
 
 google.options({
   http2: false,
@@ -27,4 +29,9 @@ app
     })
   )
   .use(swagger())
+  .cron({ name: "Send mails", pattern: "* * * * * *" }, async () => {
+    await new RssClient(fetch)
+      .getFeed("https://grifel.dev/rss.xml")
+      .then((feed) => console.log(feed));
+  })
   .listen(3000, () => console.log("Server started on port 3000"));
