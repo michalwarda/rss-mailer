@@ -18,6 +18,13 @@ app
   .on("request", (ctx) => {
     console.log(new Date(), ctx.request.method, ctx.request.url);
   })
-  .use(cors({ origin: "https://grifel.dev" }))
+  .use(
+    cors({
+      origin: "https://grifel.dev",
+      methods: ["GET", "OPTIONS", "POST", "DELETE"],
+      allowedHeaders: ["Content-Type"],
+      preflight: true,
+    })
+  )
   .use(swagger())
   .listen(3000, () => console.log("Server started on port 3000"));
