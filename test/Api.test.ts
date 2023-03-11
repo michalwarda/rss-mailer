@@ -46,4 +46,22 @@ describe("Api", () => {
       expect(status).toBe(200);
     });
   });
+
+  describe("/subscriptions/removal", () => {
+    it("calls sheetsDb with correct params", async () => {
+      const app = buildApp({
+        append: async (values) => {
+          expect(values).toEqual(["example@gmail.com", false]);
+        },
+        getAll: async () => [],
+      });
+      const url = new URL("http://localhost/subscriptions/removal");
+      url.searchParams.set("email", "example@gmail.com");
+      const status = await app
+        .handle(new Request(url.toString()))
+        .then((res) => res.status);
+
+      expect(status).toBe(307);
+    });
+  });
 });

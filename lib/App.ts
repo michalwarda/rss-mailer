@@ -1,7 +1,6 @@
 import { Elysia, t } from "elysia";
 import { MailingList } from "./MailingList.js";
-import { ISheetDb, SheetDb } from "./SheetDb.js";
-import googleapi from "googleapis";
+import { ISheetDb } from "./SheetDb.js";
 
 export function buildApp(sheetDb: ISheetDb) {
   return new Elysia()
@@ -16,6 +15,18 @@ export function buildApp(sheetDb: ISheetDb) {
         schema: {
           body: t.Object({ email: t.String() }),
           response: t.Void(),
+        },
+      }
+    )
+    .get(
+      "/subscriptions/removal",
+      async ({ store: { mailingList }, query }) => {
+        await mailingList.unsubscribe(query.email);
+        return Response.redirect("https://grifel.dev/unsubscribed", 307);
+      },
+      {
+        schema: {
+          query: t.Object({ email: t.String() }),
         },
       }
     )
