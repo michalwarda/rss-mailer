@@ -29,7 +29,7 @@ app
     })
   )
   .use(swagger())
-  .cron({ name: "Send mails", pattern: "* * * * * *" }, async () => {
+  .cron({ name: "Send mails", pattern: "* * * * *" }, async () => {
     await new RssClient(fetch)
       .getFeed("https://grifel.dev/rss.xml")
       .then((feed) => console.log(feed));
