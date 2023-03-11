@@ -2,6 +2,7 @@ import googleapi from "googleapis";
 
 export interface ISheetDb {
   append(values: any[]): Promise<void>;
+  getAll(): Promise<Record<string, any>[]>;
 }
 
 export class SheetDb implements ISheetDb {
@@ -20,6 +21,22 @@ export class SheetDb implements ISheetDb {
         },
       },
       {}
+    );
+  }
+
+  async getAll() {
+    const response = await this.googleSheets.get({
+      spreadsheetId: process.env.SHEET_ID,
+      range: process.env.SHEET_RANGE,
+    });
+    if (!response.data.values) return [];
+    const headers = response.data.values[0];
+    const values = response.data.values.slice(1);
+    return values.map((item) =>
+      headers.reduce(
+        (acc, header, index) => ({ ...acc, [header]: item[index] }),
+        {}
+      )
     );
   }
 }
