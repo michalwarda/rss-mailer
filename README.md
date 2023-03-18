@@ -6,6 +6,14 @@ Gather mails for your mailing list and trigger sending a mail based on triggers 
 
 If you have a blog and publish information about new posts through RSS with 0 additional work you can now publish an email to all your email subscribers with a short summary about the post.
 
+## Tech used
+
+- bun - runtime
+- elysia - framework
+- RSS - signal source
+- Google Sheets - database for mailing list
+- Coolify - deployment platform
+
 ## To develop
 
 Install dependencies:
